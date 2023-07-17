@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <Nullable>disable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.11" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.11">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DAL\DAL.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Pages\Configs\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Configs\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Configs\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Configs\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Configs\Index.cshtml" />
+    </ItemGroup>
+
+</Project>

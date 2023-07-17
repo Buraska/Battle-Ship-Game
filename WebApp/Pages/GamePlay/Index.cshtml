@@ -1,0 +1,158 @@
+﻿@page
+@using Microsoft.EntityFrameworkCore
+@model WebApp.Pages.GamePlay.Index
+
+@{
+    ViewData["Title"] = "BattleShip";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>d</title>
+    <style>
+    
+    #mainTable{
+    width: 100%;
+    }
+    .board {
+    caption-side: top;
+    font-size: large;
+        border: 1px;
+        }
+    .cell {
+        border: 5px;
+        border-style: solid;
+        height: 50px;
+        width: 50px;
+        text-align: center;
+        font-size: large;
+        margin: 20px;
+        
+        cursor: pointer;
+        }
+        .enemy{
+        color: #6d0303;
+        font-size: large;
+
+        }
+        .ally{
+        color: #1e7e34;
+        font-size: large;
+
+        }
+        .water{
+        background-color: #14bbd9;
+        }
+        .hit-water{
+        background-color: #3838bd;
+        }
+        .hit-ship{
+        background-color: #c91100;
+        }
+        .ship{
+        color: #848486;
+        }
+        
+        .chosen{
+        background-color: #ababf5;
+        color: gray;
+        }
+        
+        #notifications td{
+        border-style: solid;
+        border: 5px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div> 
+        @if (Model.Winner != null)
+        {
+            <h3 class="ally">@Model.BsBrain.GetAliveBoards()[0].Name have won</h3>
+        }
+    </div>
+    <div>
+        <table id="mainTable">
+            <tr>
+                <td>
+                    <table class="board">
+                        @{
+                            var player = @Model.BsBrain.GetCurrentBoard();
+                            var board = player.GetBoardCopy();
+                        }
+                        <div class="ally">Your`s board, captain @player.Name</div>
+
+                        @for (var y = 0; y < board.GetLength(1); y++)
+                        {
+                            <tr>
+                                @for (var x = 0; x < board.GetLength(0); x++)
+                                {
+                                    var cell = board[x, y];
+                                    var cl = "cell " + @cell.GetStyleClass();
+                                    if (@Model.Pointers.Any(coor => coor[0] == x) && @Model.Pointers.Any(coor => coor[1] == y) && player.PlayerId == Model.BoardId)
+                                    {
+                                        cl += " chosen";
+                                    }
+                                    <td class="@cl" onclick="window.location.href = '?id=@Model.GameStateDb.GameStateDbId&oldX=@Model.X&oldY=@Model.Y&x=@x&y=@y&boardId=@player.PlayerId'">
+                                        @cell.GetSymbol()
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </table>
+                </td>
+                <td>
+                    <table class="board">
+                        @{
+                            player = @Model.BsBrain.GetSecondPlayer();
+                            board = player.GetBoardCopy();
+                        }
+                        <div class="enemy">@player.Name`s board</div>
+                        @for (var y = 0; y < board.GetLength(1); y++)
+                        {
+                            <tr>
+                                @for (var x = 0; x < board.GetLength(0); x++)
+                                {
+                                    var cell = board[x, y];
+                                    var cl = "cell " + @cell.GetStyleClass();
+                                    if (@Model.Pointers.Any(coor => coor[0] == x) && @Model.Pointers.Any(coor => coor[1] == y) && player.PlayerId == Model.BoardId)
+                                    {
+                                        cl += " chosen";
+                                    }
+                                    <td class="@cl" onclick="window.location.href = '?id=@Model.GameStateDb.GameStateDbId&oldX=@Model.X&oldY=@Model.Y&x=@x&y=@y&boardId=@player.PlayerId'">
+                                        @cell.GetSymbol()
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </table>
+                </td>
+            </tr>
+            
+            <tr>
+                <table id="notifications">
+                    @{
+                        var nots = @Model.BsBrain.GetCurrentBoard().Notifications;
+                        nots.Reverse();
+                    }
+                    
+                    @foreach (var notification in @nots)
+                    {
+                        <tr>
+                            <td class="ally">
+                                @notification
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
+
