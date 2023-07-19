@@ -4,6 +4,7 @@ namespace DAL
 {
     public class GameConfigDb
     {
+        
         public int GameConfigDbId { get; set; }
 
 
