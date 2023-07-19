@@ -1,0 +1,21 @@
+{
+  "GameConfigId": 0,
+  "BuildingStage": false,
+  "GameConfigName": "Kek",
+  "BoardWidth": 10,
+  "BoardHeight": 10,
+  "ShipConfigs": [
+    {
+      "ShipId": 0,
+      "Name": "Typical",
+      "Quantity": 5,
+      "XSize": 2,
+      "YSize": 1,
+      "Life": 1
+    }
+  ],
+  "PlayersNames": [
+    "Anna",
+    "Monkey"
+  ]
+}

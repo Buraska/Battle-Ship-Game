@@ -10,7 +10,7 @@ namespace DAL
 
         public DbSet<GameStateDb?> GameStateDbs { get; set; } = default!;
 
-        private static string ConnectionString  = "";
+        private static string ConnectionString  = "Server= ;User Id=student;Password= ;Database= ;MultipleActiveResultSets=true";
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

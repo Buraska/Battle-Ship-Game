@@ -1,0 +1,29 @@
+{
+  "GameConfigId": 0,
+  "BuildingStage": false,
+  "GameConfigName": "MonkeyAnna",
+  "BoardWidth": 5,
+  "BoardHeight": 5,
+  "ShipConfigs": [
+    {
+      "ShipId": 0,
+      "Name": "Boat",
+      "Quantity": 2,
+      "XSize": 2,
+      "YSize": 1,
+      "Life": 1
+    },
+    {
+      "ShipId": 0,
+      "Name": "Marine",
+      "Quantity": 1,
+      "XSize": 1,
+      "YSize": 1,
+      "Life": 1
+    }
+  ],
+  "PlayersNames": [
+    "Monkey",
+    "Anna"
+  ]
+}

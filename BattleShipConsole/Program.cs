@@ -20,10 +20,10 @@ namespace BattleShipConsole
         private static GameConfig _gameConfig = new GameConfig();
         private static ShipConfig _shipConfig;
         private static BsBrain _bsBrain;
-        private static bool _usingDb = true;
+        private static bool _usingDb = false;
         static void Main(string[] args)
         {
-            _basePath = args.Length == 1 ? args[0] : Directory.GetCurrentDirectory();
+            _basePath = args.Length == 1 ? args[0] : Directory.GetParent(Directory.GetCurrentDirectory())!.Parent!.Parent!.FullName;
             
             _bsBrain = new BsBrain(new GameConfig());
             
